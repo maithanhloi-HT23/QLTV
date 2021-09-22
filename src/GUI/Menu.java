@@ -80,7 +80,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu2.setText("Danh Mục");
 
-        cmdTheLoai.setText("Thể Loại");
+        cmdTheLoai.setText("Danh Mục Thể Loại");
         cmdTheLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdTheLoaiActionPerformed(evt);

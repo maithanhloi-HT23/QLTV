@@ -26,7 +26,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="cmdTheLoai">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Th&#x1ec3; Lo&#x1ea1;i"/>
+                <Property name="text" type="java.lang.String" value="Danh M&#x1ee5;c Th&#x1ec3; Lo&#x1ea1;i"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdTheLoaiActionPerformed"/>
