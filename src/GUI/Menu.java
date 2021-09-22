@@ -5,6 +5,19 @@
  */
 package GUI;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Loi
@@ -16,6 +29,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -39,8 +53,8 @@ public class Menu extends javax.swing.JFrame {
         cmdLop = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         cmdSV = new javax.swing.JMenuItem();
-        cmdPhieuMuon = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        cmdPhieu = new javax.swing.JMenu();
+        cmdPhieuMuon = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         cmdPhieuTra = new javax.swing.JMenuItem();
         ad = new javax.swing.JMenu();
@@ -49,10 +63,17 @@ public class Menu extends javax.swing.JFrame {
         cmdTimSV = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(tbpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 28, 810, 550));
 
         jMenu1.setText("Hệ Thống");
 
         cmdKetThuc.setText("Kết Thúc");
+        cmdKetThuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdKetThucActionPerformed(evt);
+            }
+        });
         jMenu1.add(cmdKetThuc);
 
         jMenuBar1.add(jMenu1);
@@ -60,6 +81,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.setText("Danh Mục");
 
         cmdTheLoai.setText("Thể Loại");
+        cmdTheLoai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdTheLoaiActionPerformed(evt);
+            }
+        });
         jMenu2.add(cmdTheLoai);
         jMenu2.add(jSeparator1);
 
@@ -73,19 +99,34 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.add(jSeparator2);
 
         cmdLop.setText("Danh Mục Lớp");
+        cmdLop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLopActionPerformed(evt);
+            }
+        });
         jMenu2.add(cmdLop);
         jMenu2.add(jSeparator3);
 
         cmdSV.setText("Danh Mục Sinh Viên");
+        cmdSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSVActionPerformed(evt);
+            }
+        });
         jMenu2.add(cmdSV);
 
         jMenuBar1.add(jMenu2);
 
-        cmdPhieuMuon.setText("Quản Lý Phiếu");
+        cmdPhieu.setText("Quản Lý Phiếu");
 
-        jMenuItem6.setText("Phiếu Mượn");
-        cmdPhieuMuon.add(jMenuItem6);
-        cmdPhieuMuon.add(jSeparator4);
+        cmdPhieuMuon.setText("Phiếu Mượn");
+        cmdPhieuMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdPhieuMuonActionPerformed(evt);
+            }
+        });
+        cmdPhieu.add(cmdPhieuMuon);
+        cmdPhieu.add(jSeparator4);
 
         cmdPhieuTra.setText("Phiếu Trả");
         cmdPhieuTra.addActionListener(new java.awt.event.ActionListener() {
@@ -93,9 +134,9 @@ public class Menu extends javax.swing.JFrame {
                 cmdPhieuTraActionPerformed(evt);
             }
         });
-        cmdPhieuMuon.add(cmdPhieuTra);
+        cmdPhieu.add(cmdPhieuTra);
 
-        jMenuBar1.add(cmdPhieuMuon);
+        jMenuBar1.add(cmdPhieu);
 
         ad.setText("Tra Cứu");
 
@@ -108,6 +149,11 @@ public class Menu extends javax.swing.JFrame {
         ad.add(cmdTimPhieu);
 
         cmdTimSach.setText("Tìm Sách");
+        cmdTimSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdTimSachActionPerformed(evt);
+            }
+        });
         ad.add(cmdTimSach);
 
         cmdTimSV.setText("Tìm Sinh viên");
@@ -122,37 +168,133 @@ public class Menu extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tbpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 22, Short.MAX_VALUE)
-                .addComponent(tbpMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ButtonClose(String title) {
+        int index = tbpMenu.indexOfTab(title);
+        JPanel pnlTab = new JPanel(new GridBagLayout());
+        pnlTab.setOpaque(false);
+        JLabel lblTitle = new JLabel(title);
+        JButton btnClose = new JButton("x");
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1;
+
+        pnlTab.add(lblTitle, gbc);
+
+        gbc.gridx++;
+        gbc.weightx = 0;
+
+        pnlTab.add(btnClose, gbc);
+
+        tbpMenu.setTabComponentAt(index, pnlTab);
+        btnClose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component selected = tbpMenu.getSelectedComponent();
+                if (selected != null) {
+                    tbpMenu.remove(selected);
+                }
+            }
+        });
+    }
+
     private void cmdSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSachActionPerformed
-        // TODO add your handling code here:
+        if (tbpMenu.indexOfTab("Sách") <= -1) {
+            tbpMenu.add("Sách", new DanhMucSach());
+            ButtonClose("Sách");
+        } else {
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Sách"));
+            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
+        }
     }//GEN-LAST:event_cmdSachActionPerformed
 
     private void cmdPhieuTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPhieuTraActionPerformed
-        // TODO add your handling code here:
+        if (tbpMenu.indexOfTab("Trả Sách") <= -1) {
+            tbpMenu.add("Trả Sách", new QuanLyTraSach());
+            ButtonClose("Trả Sách");
+        } else {
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Trả Sách"));
+            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
+        }
     }//GEN-LAST:event_cmdPhieuTraActionPerformed
 
     private void cmdTimSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTimSVActionPerformed
-        // TODO add your handling code here:
+        if (tbpMenu.indexOfTab("Tìm Sinh Viên") <= -1) {
+            tbpMenu.add("Tìm Sinh Viên", new TraCuuSinhVien());
+            ButtonClose("Tìm Sinh Viên");
+        } else {
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Sinh Viên"));
+            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
+        }
     }//GEN-LAST:event_cmdTimSVActionPerformed
 
     private void cmdTimPhieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTimPhieuActionPerformed
-        // TODO add your handling code here:
+        if (tbpMenu.indexOfTab("Tìm Phiếu") <= -1) {
+            tbpMenu.add("Tìm Phiếu", new TraCuuPhieu());
+            ButtonClose("Tìm Phiếu");
+        } else {
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Phiếu"));
+            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
+        }
     }//GEN-LAST:event_cmdTimPhieuActionPerformed
+
+    private void cmdKetThucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdKetThucActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_cmdKetThucActionPerformed
+
+    private void cmdTheLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTheLoaiActionPerformed
+        if (tbpMenu.indexOfTab("Thể Loại") <= -1) {
+            tbpMenu.add("Thể Loại", new DanhMucTheLoai());
+            ButtonClose("Thể Loại");
+        } else {
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Thể Loại"));
+            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
+        }
+    }//GEN-LAST:event_cmdTheLoaiActionPerformed
+
+    private void cmdLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLopActionPerformed
+        if (tbpMenu.indexOfTab("Lớp") <= -1) {
+            tbpMenu.add("Lớp", new DanhMucLop());
+            ButtonClose("Lớp");
+        } else {
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Lớp"));
+            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
+        }
+    }//GEN-LAST:event_cmdLopActionPerformed
+
+    private void cmdSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSVActionPerformed
+        if (tbpMenu.indexOfTab("Sinh Viên") <= -1) {
+            tbpMenu.add("Sinh Viên", new DanhMucSinhVien());
+            ButtonClose("Sinh Viên");
+        } else {
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Sinh Viên"));
+            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
+        }
+    }//GEN-LAST:event_cmdSVActionPerformed
+
+    private void cmdPhieuMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPhieuMuonActionPerformed
+        if (tbpMenu.indexOfTab("Mượn Sách") <= -1) {
+            tbpMenu.add("Mượn Sách", new QuanLyMuonSach());
+            ButtonClose("Mượn Sách");
+        } else {
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Mượn Sách"));
+            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
+        }
+    }//GEN-LAST:event_cmdPhieuMuonActionPerformed
+
+    private void cmdTimSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTimSachActionPerformed
+        if (tbpMenu.indexOfTab("Tìm Sách") <= -1) {
+            tbpMenu.add("Tìm Sách", new TraCuuSach());
+            ButtonClose("Tìm Sách");
+        } else {
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Sách"));
+            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
+        }
+    }//GEN-LAST:event_cmdTimSachActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,16 +310,24 @@ public class Menu extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -193,7 +343,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu ad;
     private javax.swing.JMenuItem cmdKetThuc;
     private javax.swing.JMenuItem cmdLop;
-    private javax.swing.JMenu cmdPhieuMuon;
+    private javax.swing.JMenu cmdPhieu;
+    private javax.swing.JMenuItem cmdPhieuMuon;
     private javax.swing.JMenuItem cmdPhieuTra;
     private javax.swing.JMenuItem cmdSV;
     private javax.swing.JMenuItem cmdSach;
@@ -204,7 +355,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
