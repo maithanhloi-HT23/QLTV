@@ -64,7 +64,7 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(tbpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 28, 810, 550));
+        getContentPane().add(tbpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 28, 810, 630));
 
         jMenu1.setText("Hệ Thống");
 
@@ -206,6 +206,7 @@ public class Menu extends javax.swing.JFrame {
         if (tbpMenu.indexOfTab("Sách") <= -1) {
             tbpMenu.add("Sách", new DanhMucSach());
             ButtonClose("Sách");
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Sách"));
         } else {
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Sách"));
             JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
@@ -216,6 +217,7 @@ public class Menu extends javax.swing.JFrame {
         if (tbpMenu.indexOfTab("Trả Sách") <= -1) {
             tbpMenu.add("Trả Sách", new QuanLyTraSach());
             ButtonClose("Trả Sách");
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Trả Sách"));
         } else {
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Trả Sách"));
             JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
@@ -226,6 +228,7 @@ public class Menu extends javax.swing.JFrame {
         if (tbpMenu.indexOfTab("Tìm Sinh Viên") <= -1) {
             tbpMenu.add("Tìm Sinh Viên", new TraCuuSinhVien());
             ButtonClose("Tìm Sinh Viên");
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Sinh Viên"));
         } else {
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Sinh Viên"));
             JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
@@ -236,6 +239,7 @@ public class Menu extends javax.swing.JFrame {
         if (tbpMenu.indexOfTab("Tìm Phiếu") <= -1) {
             tbpMenu.add("Tìm Phiếu", new TraCuuPhieu());
             ButtonClose("Tìm Phiếu");
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Phiếu"));
         } else {
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Phiếu"));
             JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
@@ -250,6 +254,7 @@ public class Menu extends javax.swing.JFrame {
         if (tbpMenu.indexOfTab("Thể Loại") <= -1) {
             tbpMenu.add("Thể Loại", new DanhMucTheLoai());
             ButtonClose("Thể Loại");
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Thể Loại"));
         } else {
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Thể Loại"));
             JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
@@ -260,6 +265,7 @@ public class Menu extends javax.swing.JFrame {
         if (tbpMenu.indexOfTab("Lớp") <= -1) {
             tbpMenu.add("Lớp", new DanhMucLop());
             ButtonClose("Lớp");
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Lớp"));
         } else {
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Lớp"));
             JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
@@ -270,6 +276,7 @@ public class Menu extends javax.swing.JFrame {
         if (tbpMenu.indexOfTab("Sinh Viên") <= -1) {
             tbpMenu.add("Sinh Viên", new DanhMucSinhVien());
             ButtonClose("Sinh Viên");
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Sinh Viên"));
         } else {
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Sinh Viên"));
             JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
@@ -280,6 +287,7 @@ public class Menu extends javax.swing.JFrame {
         if (tbpMenu.indexOfTab("Mượn Sách") <= -1) {
             tbpMenu.add("Mượn Sách", new QuanLyMuonSach());
             ButtonClose("Mượn Sách");
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Mượn Sách"));
         } else {
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Mượn Sách"));
             JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
@@ -290,6 +298,7 @@ public class Menu extends javax.swing.JFrame {
         if (tbpMenu.indexOfTab("Tìm Sách") <= -1) {
             tbpMenu.add("Tìm Sách", new TraCuuSach());
             ButtonClose("Tìm Sách");
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Sách"));
         } else {
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Sách"));
             JOptionPane.showMessageDialog(this, "Mục này đang được mở !");

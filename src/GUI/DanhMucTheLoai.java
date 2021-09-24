@@ -5,7 +5,10 @@
  */
 package GUI;
 
+import GUI.model.ChuyenMuc;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -18,7 +21,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DanhMucTheLoai extends javax.swing.JPanel {
 
-    private DefaultTableModel modelTable;
     private JFrame jframe = new JFrame();
     int selectedRowIndex;//Vi tri click chuot tren table
     private String macu;
@@ -31,17 +33,27 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
     private ResultSet re;
     private PreparedStatement ps;
 
+    private List<ChuyenMuc> cm;
+
     /**
      * Creates new form DanhMucTheLoai
      */
     public DanhMucTheLoai() {
         initComponents();
-        modelTable = (DefaultTableModel) tbChuyenMuc.getModel();
+        cm = new ArrayList<>();
         layDataTbale();
         KhoaMo(false);
     }
 
+    public List<ChuyenMuc> getCm() {
+        return cm;
+    }
+
     private void layDataTbale() {
+        DefaultTableModel modelTable = (DefaultTableModel) tbChuyenMuc.getModel();
+        if (cm.isEmpty() == false) {
+            cm.clear();
+        }
         try {
             if (modelTable.getRowCount() > 0) {
                 modelTable.setRowCount(0);
@@ -51,16 +63,20 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
             sql = "select * from ChuyenMuc";
             re = stmt.executeQuery(sql);
             while (re.next()) {
-                modelTable.addRow(new Object[]{re.getString(1), re.getString(2)});
+                cm.add(new ChuyenMuc(re.getString(1), re.getString(2)));
             }
             re.close();
             stmt.close();
             conn.close();
+            for (ChuyenMuc item : cm) {
+                modelTable.addRow(new Object[]{item.getMaMuc(), item.getTenMuc()});
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DanhMucTheLoai.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DanhMucTheLoai.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         lbThongBao.setText("Có " + tbChuyenMuc.getRowCount() + " thể loại.");
     }
 
@@ -357,8 +373,8 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
             return;
         }
         txtMaMuc.setText(txtMaMuc.getText().toUpperCase());
-        if (txtMaMuc.getText().trim().length() > 100 || txtTenMuc.getText().trim().length() > 100) {
-            JOptionPane.showMessageDialog(jframe, "Độ dài quá lớn. Chỉ được tối đa 100 ký tự.");
+        if (txtMaMuc.getText().trim().length() > 10) {
+            JOptionPane.showMessageDialog(jframe, "Độ dài mã mục quá lớn. Chỉ được tối đa 10 ký tự.");
             return;
         }
         if (ktThem == true) {

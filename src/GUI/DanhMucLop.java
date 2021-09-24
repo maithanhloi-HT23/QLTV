@@ -5,8 +5,11 @@
  */
 package GUI;
 
+import GUI.model.Lop;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -18,7 +21,6 @@ import javax.swing.JOptionPane;
  */
 public class DanhMucLop extends javax.swing.JPanel {
 
-    private DefaultTableModel modelTable;
     private JFrame jframe = new JFrame();
     int selectedRowIndex;//Vi tri click chuot tren table
     private String macu;
@@ -31,12 +33,14 @@ public class DanhMucLop extends javax.swing.JPanel {
     private ResultSet re;
     private PreparedStatement ps;
 
+    private List<Lop> lop;
+
     /**
      * Creates new form DanhMucLop
      */
     public DanhMucLop() {
         initComponents();
-        modelTable = (DefaultTableModel) tbLop.getModel();
+        lop = new ArrayList<>();
         KhoaMo(false);
         layDataTbale();
     }
@@ -211,6 +215,10 @@ public class DanhMucLop extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public List<Lop> getLop() {
+        return lop;
+    }
+
     private void KhoaMo(boolean b) {
         txtMa.setEditable(b);
         txtTen.setEditable(b);
@@ -232,6 +240,10 @@ public class DanhMucLop extends javax.swing.JPanel {
     }
 
     private void layDataTbale() {
+        DefaultTableModel modelTable = (DefaultTableModel) tbLop.getModel();
+        if (lop.isEmpty() == false) {
+            lop.clear();
+        }
         if (modelTable.getRowCount() > 0) {
             modelTable.setRowCount(0);
         }
@@ -241,11 +253,14 @@ public class DanhMucLop extends javax.swing.JPanel {
             sql = "select * from lop";
             re = stmt.executeQuery(sql);
             while (re.next()) {
-                modelTable.addRow(new Object[]{re.getString(1), re.getString(2)});
+                lop.add(new Lop(re.getString(1), re.getString(2)));
             }
             re.close();
             stmt.close();
             conn.close();
+            for (Lop item : lop) {
+                modelTable.addRow(new Object[]{item.getMaLop(), item.getTenLop()});
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DanhMucLop.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -276,7 +291,7 @@ public class DanhMucLop extends javax.swing.JPanel {
         }
         //tùy chỉnh văn bản cho nút lệnh
         Object[] options = {"Yes", "No"};
-        int n = JOptionPane.showOptionDialog(jframe, "Bạn có muốn xóa chuyên mục nay không ?",
+        int n = JOptionPane.showOptionDialog(jframe, "Bạn có muốn xóa lớp nay không ?",
                 "MESSAGE",
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
@@ -348,8 +363,8 @@ public class DanhMucLop extends javax.swing.JPanel {
             return;
         }
         txtMa.setText(txtMa.getText().toUpperCase());
-        if (txtMa.getText().trim().length() > 100 || txtTen.getText().trim().length() > 100) {
-            JOptionPane.showMessageDialog(jframe, "Độ dài quá lớn. Chỉ được tối đa 100 ký tự.");
+        if (txtMa.getText().trim().length() > 10) {
+            JOptionPane.showMessageDialog(jframe, "Độ dài mã lớp quá lớn. Chỉ được tối đa 10 ký tự.");
             return;
         }
         if (ktThem == true) {
