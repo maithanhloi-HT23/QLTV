@@ -1,5 +1,11 @@
 # QLTV
+
 git add .
+
 git status
+
 git commit -m
-git push -u origin main
+
+git pull --rebase origin main
+
+git push origin main
