@@ -6,11 +6,13 @@
 package GUI;
 
 import GUI.model.Lop;
+import GUI.model.SinhVien;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,18 +41,24 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
 
     private DanhMucLop dmLop = new DanhMucLop();
     private Lop lop = new Lop();
-    private List<Lop> listSV;
+    private List<Lop> listLop;
+    private List<SinhVien> listSV;
 
     /**
      * Creates new form DanhMucSinhVien
      */
     public DanhMucSinhVien() {
         initComponents();
-        listSV = dmLop.getLop();
+        listLop = dmLop.getLop();
+        listSV = new ArrayList<>();
         layDataCombo();
         KhoaMo(false);   
         mamuc = ((Lop) combTim.getSelectedItem()).getMaLop();
         layDataTbale();
+    }
+
+    public List<SinhVien> getListSV() {
+        return listSV;
     }
 
     /**
@@ -227,8 +235,7 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(cmdGhi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(76, 76, 76)
-                                                .addComponent(cmdKhong)
-                                                .addGap(71, 71, 71))
+                                                .addComponent(cmdKhong))
                                             .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -242,7 +249,7 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(25, 25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,7 +277,7 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
                             .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(cmdThem, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,7 +320,7 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
     private void layDataCombo() {
         modelCombTim = new DefaultComboBoxModel();
         modelCobLop = new DefaultComboBoxModel();
-        for (Lop item : listSV) {
+        for (Lop item : listLop) {
             modelCombTim.addElement(item);
             modelCobLop.addElement(item);
         }
@@ -336,19 +343,23 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
         if (modelTable.getRowCount() > 0) {
             modelTable.setRowCount(0);
         }
+        if (listSV.isEmpty() == false) {
+           listSV.clear();
+        }
         try {
             conn = ketnoiDB.ConnectDB();
             stmt = conn.createStatement();
-
             sql = "select * from SinhVien where lop = N'" + mamuc + "'";
-
             re = stmt.executeQuery(sql);
             while (re.next()) {
-                modelTable.addRow(new Object[]{re.getString(1), re.getString(2), re.getString(3), re.getString(4)});
+                listSV.add(new SinhVien(re.getString(1), re.getString(2), re.getString(3), re.getString(4)));
             }
             re.close();
             stmt.close();
             conn.close();
+            for (SinhVien item : listSV) {
+                modelTable.addRow(new Object[]{item.getMaSV(), item.getHoTen(),item.getMaLop(),item.getSDT()});
+            }         
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DanhMucSinhVien.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

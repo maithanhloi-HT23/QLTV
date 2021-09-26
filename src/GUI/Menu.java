@@ -64,7 +64,7 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(tbpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 28, 810, 630));
+        getContentPane().add(tbpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 28, 1000, 700));
 
         jMenu1.setText("Hệ Thống");
 
