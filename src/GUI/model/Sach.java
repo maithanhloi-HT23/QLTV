@@ -16,20 +16,25 @@ public class Sach {
     private String tenSach;
     private String tacGia;
     private String nhaXB;
-    private String viTri;
+    private int soLuong;
 
-    public Sach(String maSach, String maMuc, String tenSach, String tacGia, String nhaXB, String viTri) {
+    public Sach(String maSach, String maMuc, String tenSach, String tacGia, String nhaXB, int soLuong) {
         this.maSach = maSach;
         this.maMuc = maMuc;
         this.tenSach = tenSach;
         this.tacGia = tacGia;
         this.nhaXB = nhaXB;
-        this.viTri = viTri;
+        this.soLuong = soLuong;
     }
 
     public Sach() {
     }
 
+    public Sach(String maSach, String tenSach) {
+        this.maSach = maSach;
+        this.tenSach = tenSach;
+    }
+    
     public String getMaSach() {
         return maSach;
     }
@@ -70,12 +75,12 @@ public class Sach {
         this.nhaXB = nhaXB;
     }
 
-    public String getViTri() {
-        return viTri;
+    public int getSoLuong() {
+        return soLuong;
     }
 
-    public void setViTri(String viTri) {
-        this.viTri = viTri;
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
 }

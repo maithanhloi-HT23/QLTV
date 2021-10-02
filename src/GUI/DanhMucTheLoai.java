@@ -124,6 +124,7 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
         cmdKhong = new javax.swing.JButton();
 
         setAutoscrolls(true);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmdThem.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         cmdThem.setText("Thêm");
@@ -132,6 +133,7 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
                 cmdThemActionPerformed(evt);
             }
         });
+        add(cmdThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 273, -1, -1));
 
         cmdSua.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         cmdSua.setText("Sửa");
@@ -140,11 +142,13 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
                 cmdSuaActionPerformed(evt);
             }
         });
+        add(cmdSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(526, 273, 86, -1));
 
         lbThongBao.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lbThongBao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbThongBao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lbThongBao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        add(lbThongBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 75, 177, 29));
 
         tbChuyenMuc.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         tbChuyenMuc.setModel(new javax.swing.table.DefaultTableModel(
@@ -170,11 +174,17 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbChuyenMuc);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 108, 362, 250));
+
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel2.setText("Mã mục :");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 120, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel3.setText("Tên mục :");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 182, -1, -1));
+        add(txtMaMuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(536, 118, 156, 35));
+        add(txtTenMuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(536, 179, 156, 36));
 
         cmdXoa.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         cmdXoa.setText("Xóa");
@@ -183,9 +193,11 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
                 cmdXoaActionPerformed(evt);
             }
         });
+        add(cmdXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 273, 85, -1));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
         jLabel1.setText("Thể Loại");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 14, 208, 43));
 
         cmdGhi.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         cmdGhi.setText("Ghi");
@@ -194,6 +206,7 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
                 cmdGhiActionPerformed(evt);
             }
         });
+        add(cmdGhi, new org.netbeans.lib.awtextra.AbsoluteConstraints(443, 327, 83, -1));
 
         cmdKhong.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         cmdKhong.setText("Không");
@@ -202,77 +215,7 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
                 cmdKhongActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(241, 241, 241))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(cmdGhi, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cmdKhong)
-                        .addGap(55, 55, 55))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(cmdThem)
-                                .addGap(32, 32, 32)
-                                .addComponent(cmdSua, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(cmdXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMaMuc, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                                    .addComponent(txtTenMuc))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lbThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtMaMuc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtTenMuc, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmdThem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmdSua)
-                            .addComponent(cmdXoa))
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmdGhi)
-                            .addComponent(cmdKhong)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
+        add(cmdKhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 327, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     public boolean ktTrungThem(String manhap) throws ClassNotFoundException, SQLException {
