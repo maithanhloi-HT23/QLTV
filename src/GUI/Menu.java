@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SingleSelectionModel;
 
 /**
  *
@@ -171,7 +172,7 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonClose(String title) {
+    public void ButtonClose(String title) {
         int index = tbpMenu.indexOfTab(title);
         JPanel pnlTab = new JPanel(new GridBagLayout());
         pnlTab.setOpaque(false);

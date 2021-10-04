@@ -326,9 +326,8 @@ public class QuanLyTraSach extends javax.swing.JPanel {
 
         txtNguoiLap.setText(tbPhieu.getValueAt(selectedRowIndex, 2).toString());
         txtSoPhieu.setText(tbPhieu.getValueAt(selectedRowIndex, 0).toString());
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-        DateHenTra.setText((String) tbPhieu.getValueAt(selectedRowIndex, 1));
-        DateMuon.setText((String) tbPhieu.getValueAt(selectedRowIndex, 4));
+        DateHenTra.setText((String) tbPhieu.getValueAt(selectedRowIndex, 4));
+        DateMuon.setText((String) tbPhieu.getValueAt(selectedRowIndex, 1));
         layDaTaCTPhieu();
         sophieu = txtSoPhieu.getText();
     }//GEN-LAST:event_tbPhieuMouseClicked
