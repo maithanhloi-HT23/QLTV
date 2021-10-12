@@ -65,7 +65,7 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(tbpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 28, 1100, 730));
+        getContentPane().add(tbpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 760));
 
         jMenu1.setText("Hệ Thống");
 
@@ -203,48 +203,31 @@ public class Menu extends javax.swing.JFrame {
         });
     }
 
-    private void cmdSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSachActionPerformed
-        if (tbpMenu.indexOfTab("Sách") <= -1) {
-            tbpMenu.add("Sách", new DanhMucSach());
-            ButtonClose("Sách");
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Sách"));
+    public void addTab(String title, Component component) {
+        if (tbpMenu.indexOfTab(title) <= -1) {
+            tbpMenu.add(title, component);
+            ButtonClose(title);
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab(title));
         } else {
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Sách"));
+            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab(title));
             JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
         }
+    }
+
+    private void cmdSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSachActionPerformed
+        addTab("Sách", new DanhMucSach());
     }//GEN-LAST:event_cmdSachActionPerformed
 
     private void cmdPhieuTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPhieuTraActionPerformed
-        if (tbpMenu.indexOfTab("Trả Sách") <= -1) {
-            tbpMenu.add("Trả Sách", new QuanLyTraSach());
-            ButtonClose("Trả Sách");
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Trả Sách"));
-        } else {
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Trả Sách"));
-            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
-        }
+        addTab("Trả Sách", new QuanLyTraSach());
     }//GEN-LAST:event_cmdPhieuTraActionPerformed
 
     private void cmdTimSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTimSVActionPerformed
-        if (tbpMenu.indexOfTab("Tìm Sinh Viên") <= -1) {
-            tbpMenu.add("Tìm Sinh Viên", new TraCuuSinhVien());
-            ButtonClose("Tìm Sinh Viên");
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Sinh Viên"));
-        } else {
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Sinh Viên"));
-            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
-        }
+        addTab("Tìm Sinh Viên", new TraCuuSinhVien());
     }//GEN-LAST:event_cmdTimSVActionPerformed
 
     private void cmdTimPhieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTimPhieuActionPerformed
-        if (tbpMenu.indexOfTab("Tìm Phiếu") <= -1) {
-            tbpMenu.add("Tìm Phiếu", new TraCuuPhieu());
-            ButtonClose("Tìm Phiếu");
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Phiếu"));
-        } else {
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Phiếu"));
-            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
-        }
+        addTab("Tìm Phiếu", new TraCuuPhieu());
     }//GEN-LAST:event_cmdTimPhieuActionPerformed
 
     private void cmdKetThucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdKetThucActionPerformed
@@ -252,58 +235,23 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdKetThucActionPerformed
 
     private void cmdTheLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTheLoaiActionPerformed
-        if (tbpMenu.indexOfTab("Thể Loại") <= -1) {
-            tbpMenu.add("Thể Loại", new DanhMucTheLoai());
-            ButtonClose("Thể Loại");
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Thể Loại"));
-        } else {
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Thể Loại"));
-            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
-        }
+        addTab("Thể Loại", new DanhMucTheLoai());
     }//GEN-LAST:event_cmdTheLoaiActionPerformed
 
     private void cmdLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLopActionPerformed
-        if (tbpMenu.indexOfTab("Lớp") <= -1) {
-            tbpMenu.add("Lớp", new DanhMucLop());
-            ButtonClose("Lớp");
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Lớp"));
-        } else {
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Lớp"));
-            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
-        }
+        addTab("Lớp", new DanhMucLop());
     }//GEN-LAST:event_cmdLopActionPerformed
 
     private void cmdSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSVActionPerformed
-        if (tbpMenu.indexOfTab("Sinh Viên") <= -1) {
-            tbpMenu.add("Sinh Viên", new DanhMucSinhVien());
-            ButtonClose("Sinh Viên");
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Sinh Viên"));
-        } else {
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Sinh Viên"));
-            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
-        }
+        addTab("Sinh Viên", new DanhMucSinhVien());
     }//GEN-LAST:event_cmdSVActionPerformed
 
     private void cmdPhieuMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPhieuMuonActionPerformed
-        if (tbpMenu.indexOfTab("Mượn Sách") <= -1) {
-            tbpMenu.add("Mượn Sách", new QuanLyMuonSach());
-            ButtonClose("Mượn Sách");
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Mượn Sách"));
-        } else {
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Mượn Sách"));
-            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
-        }
+        addTab("Mượn Sách", new QuanLyMuonSach());
     }//GEN-LAST:event_cmdPhieuMuonActionPerformed
 
     private void cmdTimSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTimSachActionPerformed
-        if (tbpMenu.indexOfTab("Tìm Sách") <= -1) {
-            tbpMenu.add("Tìm Sách", new TraCuuSach());
-            ButtonClose("Tìm Sách");
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Sách"));
-        } else {
-            tbpMenu.setSelectedIndex(tbpMenu.indexOfTab("Tìm Sách"));
-            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
-        }
+        addTab("Tìm Sách", new TraCuuSach());
     }//GEN-LAST:event_cmdTimSachActionPerformed
 
     /**

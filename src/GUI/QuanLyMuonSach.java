@@ -132,7 +132,7 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         DateTra = new com.toedter.calendar.JDateChooser();
         cmdXoaSach = new javax.swing.JButton();
-        cmdXoaTran = new javax.swing.JButton();
+        cmdXoaTrang = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbSachMuon = new javax.swing.JTable();
         cmdTaoPhieu = new javax.swing.JButton();
@@ -175,7 +175,7 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         lblThongBao.setText(".");
         tbThonBao.add(lblThongBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 362, -1));
 
-        add(tbThonBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -3, 420, 270));
+        add(tbThonBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 420, 270));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm Sách", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -267,14 +267,14 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         });
         jPanel3.add(cmdXoaSach, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 262, -1, 37));
 
-        cmdXoaTran.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmdXoaTran.setText("Xóa Trắng");
-        cmdXoaTran.addActionListener(new java.awt.event.ActionListener() {
+        cmdXoaTrang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmdXoaTrang.setText("Xóa Trắng");
+        cmdXoaTrang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdXoaTranActionPerformed(evt);
+                cmdXoaTrangActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdXoaTran, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 262, -1, 37));
+        jPanel3.add(cmdXoaTrang, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 262, -1, 37));
 
         tbSachMuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -426,28 +426,23 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
 
     private void layDataTbaleSach() {
         modelTableSach = (DefaultTableModel) tbSach.getModel();
+        Sach sach;
+        int i;
         if (modelTableSach.getRowCount() > 0) {
             modelTableSach.setRowCount(0);
         }
-        try {
-            conn = ketnoiDB.ConnectDB();
-            stmt = conn.createStatement();
-            if ("".equals(mamuc)) {
-                sql = "select * from Sach";
-            } else {
-                sql = "select * from Sach where mamuc = N'" + mamuc + "'";
+        if ("".equals(mamuc)) {
+            for (i = 0; i < listSach.size(); i++) {
+                sach = listSach.get(i);
+                modelTableSach.addRow(new Object[]{sach.getMaSach(), sach.getMaMuc(), sach.getTenSach(), sach.getTacGia(), sach.getNhaXB(), sach.getSoLuong()});
             }
-            re = stmt.executeQuery(sql);
-            while (re.next()) {
-                modelTableSach.addRow(new Object[]{re.getString(1), re.getString(2), re.getString(3), re.getString(4), re.getString(5), re.getString(6)});
+        } else {
+            for (i = 0; i < listSach.size(); i++) {
+                sach = listSach.get(i);
+                if (sach.getMaMuc().equals(mamuc)) {
+                    modelTableSach.addRow(new Object[]{sach.getMaSach(), sach.getMaMuc(), sach.getTenSach(), sach.getTacGia(), sach.getNhaXB(), sach.getSoLuong()});
+                }
             }
-            re.close();
-            stmt.close();
-            conn.close();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -491,8 +486,21 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
     }
 
     private void cmdThemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdThemSachActionPerformed
+        masv = txtMaSV.getText().toString().trim();
+        int dem = 0;
+        for (int i = 0; i < listSV.size(); i++) {
+            SinhVien sv = listSV.get(i);
+            if (sv.getMaSV().equals(masv)) {
+                break;
+            } else {
+                dem++;
+            }
+        }
+        if (dem == listSV.size()) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy sinh viên có mã " + masv);
+        }
         boolean check = true;
-        int solgSach = Integer.parseInt((String) tbSach.getValueAt(tbSach.getSelectedRow(), 5));
+        int solgSach = (int) tbSach.getValueAt(tbSach.getSelectedRow(), 5);
         String maSach = (String) tbSach.getValueAt(tbSach.getSelectedRow(), 0);
         if (tbSach.getSelectedRow() == 0) {
             return;
@@ -573,11 +581,23 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         txtNguoiLap.setText("");
     }
 
-    private void cmdXoaTranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdXoaTranActionPerformed
-        xoaTrang();
+    private void cmdXoaTrangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdXoaTrangActionPerformed
+        for (int i = 0; i < listSachDaThem.size(); i++) {
+            String maSach = listSachDaThem.get(i).getMaSach();
+            for (int j = 0; j < listSach.size(); j++) {
+                Sach b = listSach.get(j);
+                if (b.getMaSach().equals(maSach)) {
+                    listSach.get(j).setSoLuong(b.getSoLuong() + 1);
+                }
+            }
+        }
         listSachDaThem.clear();
-        modelTableSachMuon.setRowCount(0);
-    }//GEN-LAST:event_cmdXoaTranActionPerformed
+        mamuc = "";
+        hienThiSachDaThem();
+        layListSach();
+        layDataTbaleSach();      
+        xoaTrang();
+    }//GEN-LAST:event_cmdXoaTrangActionPerformed
 
     public String laySoPhieuMoi() throws ClassNotFoundException, SQLException {
         conn = ketnoiDB.ConnectDB();
@@ -767,7 +787,7 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
     private javax.swing.JButton cmdTaoPhieu;
     private javax.swing.JButton cmdThemSach;
     private javax.swing.JButton cmdXoaSach;
-    private javax.swing.JButton cmdXoaTran;
+    private javax.swing.JButton cmdXoaTrang;
     private javax.swing.JComboBox<String> combTim;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -151,7 +151,7 @@
     <Container class="javax.swing.JTabbedPane" name="tbpMenu">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="28" width="1100" height="730"/>
+          <AbsoluteConstraints x="0" y="0" width="1100" height="760"/>
         </Constraint>
       </Constraints>
 

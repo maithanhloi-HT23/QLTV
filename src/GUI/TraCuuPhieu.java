@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -39,6 +41,7 @@ public class TraCuuPhieu extends javax.swing.JPanel {
     private DefaultTableModel modelTablePhieu;
     private DefaultTableModel modelTableCTPhieu;
     private String sophieu;
+    private Date ngayHenTra;
 
     /**
      * Creates new form TraCuuPhieu
@@ -47,6 +50,7 @@ public class TraCuuPhieu extends javax.swing.JPanel {
         initComponents();
         setJDate();
         rdoNgayLap.setSelected(true);
+        ckbQuaHanTra.setEnabled(false);
     }
 
     private void setJDate() {
@@ -78,6 +82,9 @@ public class TraCuuPhieu extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         ckbChuaKetThuc = new javax.swing.JCheckBox();
         ckbDaKetThuc = new javax.swing.JCheckBox();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        ckbQuaHanTra = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbCTPhieu = new javax.swing.JTable();
@@ -106,7 +113,7 @@ public class TraCuuPhieu extends javax.swing.JPanel {
                 cmdTimKiemActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, -1, -1));
+        jPanel1.add(cmdTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 140, -1));
 
         dateTuNgay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel1.add(dateTuNgay, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 170, 30));
@@ -127,14 +134,26 @@ public class TraCuuPhieu extends javax.swing.JPanel {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 80, 20));
 
         ckbChuaKetThuc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        ckbChuaKetThuc.setText("Chưa kết thúc");
+        ckbChuaKetThuc.setText("Chưa trả xong");
         jPanel1.add(ckbChuaKetThuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
         ckbDaKetThuc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        ckbDaKetThuc.setText("Đã kết thúc");
-        jPanel1.add(ckbDaKetThuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, -1, -1));
+        ckbDaKetThuc.setText("Đã trả đầy đủ");
+        jPanel1.add(ckbDaKetThuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 840, 150));
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setText("Lập phiếu mượn");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 140, -1));
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton3.setText("Lập phiếu trả");
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 140, -1));
+
+        ckbQuaHanTra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ckbQuaHanTra.setText("Quá hạntrả");
+        jPanel1.add(ckbQuaHanTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 880, 150));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chi tiết phiếu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -157,9 +176,9 @@ public class TraCuuPhieu extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tbCTPhieu);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 800, 160));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 840, 160));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 840, 210));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 880, 210));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Phiếu Mượn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -169,7 +188,7 @@ public class TraCuuPhieu extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Số phiếu", "Ngày lập", "Người lập", "Ma SV", "Ngay hẹn trả", "Ngày kết thúc", "Đã kết thúc"
+                "Số phiếu", "Ngày lập", "Người lập", "Ma SV", "Ngày hẹn trả", "Ngày kết thúc", "Đã kết thúc"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -187,9 +206,9 @@ public class TraCuuPhieu extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tbPhieu);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 800, 220));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 840, 220));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 840, 270));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 880, 270));
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean KiemTraTim() {
@@ -260,7 +279,7 @@ public class TraCuuPhieu extends javax.swing.JPanel {
                     + " Where SoPhieu='" + sophieu + "'";
             re = stmt.executeQuery(sql);
             while (re.next()) {
-                modelTableCTPhieu.addRow(new Object[]{re.getString(1), re.getString(2), re.getString(3),re.getString(4)});
+                modelTableCTPhieu.addRow(new Object[]{re.getString(1), re.getString(2), re.getString(3), re.getString(4)});
             }
             conn.close();
             stmt.close();
@@ -271,9 +290,26 @@ public class TraCuuPhieu extends javax.swing.JPanel {
             Logger.getLogger(TraCuuPhieu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    private void KtraTinhTrang(int a) {
+        try {
+            DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+            ngayHenTra = df.parse((String) tbPhieu.getValueAt(a, 4));           
+            Date date = new Date();
+            if (date.after(ngayHenTra)) {
+                ckbQuaHanTra.setSelected(true);
+            } else {
+                ckbQuaHanTra.setSelected(false);
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(TraCuuPhieu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     private void tbPhieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPhieuMouseClicked
-        sophieu = (String) tbPhieu.getValueAt(tbPhieu.getSelectedRow(), 0);
+        selectedRowIndex = tbPhieu.getSelectedRow();
+        sophieu = (String) tbPhieu.getValueAt(selectedRowIndex, 0);
+        KtraTinhTrang(selectedRowIndex);
         layDaTaCTPhieu();
     }//GEN-LAST:event_tbPhieuMouseClicked
 
@@ -282,9 +318,12 @@ public class TraCuuPhieu extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JCheckBox ckbChuaKetThuc;
     private javax.swing.JCheckBox ckbDaKetThuc;
+    private javax.swing.JCheckBox ckbQuaHanTra;
     private javax.swing.JButton cmdTimKiem;
     private com.toedter.calendar.JDateChooser dateDenNgay;
     private com.toedter.calendar.JDateChooser dateTuNgay;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
