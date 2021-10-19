@@ -7,12 +7,18 @@ package GUI;
 
 import GUI.model.Sach;
 import GUI.model.SinhVien;
-import java.sql.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -22,13 +28,12 @@ import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
-import java.util.Date;
 
 /**
  *
  * @author Loi
  */
-public class QuanLyTraSach extends javax.swing.JPanel {
+public class TraSach extends javax.swing.JFrame {
 
     private JFrame jframe = new JFrame();
     int selectedRowIndex;//Vi tri click chuot tren table
@@ -50,10 +55,11 @@ public class QuanLyTraSach extends javax.swing.JPanel {
     private DefaultTableModel modelTableCTPhieu;
 
     /**
-     * Creates new form QuanLyTraSach
+     * Creates new form TraSach
      */
-    public QuanLyTraSach() {
+    public TraSach() {
         initComponents();
+        setLocationRelativeTo(null);
         dsSinhVien();
         searchReadTime();
         setJDate();
@@ -63,6 +69,21 @@ public class QuanLyTraSach extends javax.swing.JPanel {
         txtTenSach.setEditable(false);
         DateHenTra.setEditable(false);
         DateMuon.setEditable(false);
+
+        this.setResizable(false);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                Menu.isOpenFrmPhieuTraSach = false;
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                Menu.isOpenFrmPhieuTraSach = false;
+            }
+
+        });
     }
 
     /**
@@ -104,7 +125,9 @@ public class QuanLyTraSach extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbPhieu = new javax.swing.JTable();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Trả sách");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbThonBao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm sinh viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         tbThonBao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -136,7 +159,7 @@ public class QuanLyTraSach extends javax.swing.JPanel {
         lblThongBao.setText(".");
         tbThonBao.add(lblThongBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 362, -1));
 
-        add(tbThonBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 420, 270));
+        getContentPane().add(tbThonBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 420, 270));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chi tiết phiếu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -218,7 +241,7 @@ public class QuanLyTraSach extends javax.swing.JPanel {
         jPanel3.add(DateHenTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 150, 40));
         jPanel3.add(dateTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 150, 280, 40));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 1030, 330));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 1110, 330));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Phiếu Mượn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -246,9 +269,11 @@ public class QuanLyTraSach extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tbPhieu);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 580, 220));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 640, 220));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 610, 270));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 670, 270));
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     public void dsSinhVien() {
@@ -264,9 +289,9 @@ public class QuanLyTraSach extends javax.swing.JPanel {
             stmt.close();
             conn.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -316,21 +341,10 @@ public class QuanLyTraSach extends javax.swing.JPanel {
                 lblThongBao.setText("Sinh viên đang mượn " + demSachMuon() + " cuốn sách.");
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
         }
         lapDataTbPhieu();
     }//GEN-LAST:event_jListMaSVMouseClicked
-
-    private void tbPhieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPhieuMouseClicked
-        selectedRowIndex = tbPhieu.getSelectedRow();
-
-        txtNguoiLap.setText(tbPhieu.getValueAt(selectedRowIndex, 2).toString());
-        txtSoPhieu.setText(tbPhieu.getValueAt(selectedRowIndex, 0).toString());
-        DateHenTra.setText((String) tbPhieu.getValueAt(selectedRowIndex, 4));
-        DateMuon.setText((String) tbPhieu.getValueAt(selectedRowIndex, 1));
-        layDaTaCTPhieu();
-        sophieu = txtSoPhieu.getText();
-    }//GEN-LAST:event_tbPhieuMouseClicked
 
     private void tbCTPhieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCTPhieuMouseClicked
         selectedRowIndex = tbCTPhieu.getSelectedRow();
@@ -378,12 +392,23 @@ public class QuanLyTraSach extends javax.swing.JPanel {
                     layDaTaCTPhieu();
                 }
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_cmdGhiTraActionPerformed
+
+    private void tbPhieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPhieuMouseClicked
+        selectedRowIndex = tbPhieu.getSelectedRow();
+
+        txtNguoiLap.setText(tbPhieu.getValueAt(selectedRowIndex, 2).toString());
+        txtSoPhieu.setText(tbPhieu.getValueAt(selectedRowIndex, 0).toString());
+        DateHenTra.setText((String) tbPhieu.getValueAt(selectedRowIndex, 4));
+        DateMuon.setText((String) tbPhieu.getValueAt(selectedRowIndex, 1));
+        layDaTaCTPhieu();
+        sophieu = txtSoPhieu.getText();
+    }//GEN-LAST:event_tbPhieuMouseClicked
 
     private void kiemtraketthucphieu() {
         try {
@@ -407,9 +432,9 @@ public class QuanLyTraSach extends javax.swing.JPanel {
             }
             conn.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -431,9 +456,9 @@ public class QuanLyTraSach extends javax.swing.JPanel {
             ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -516,9 +541,9 @@ public class QuanLyTraSach extends javax.swing.JPanel {
             stmt.close();
             re.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -541,10 +566,45 @@ public class QuanLyTraSach extends javax.swing.JPanel {
             stmt.close();
             re.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraSach.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TraSach.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TraSach.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TraSach.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TraSach.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TraSach().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

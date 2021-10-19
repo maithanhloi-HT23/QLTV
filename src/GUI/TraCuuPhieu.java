@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static GUI.Menu.isOpenFrmPhieuTraSach;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -82,8 +83,8 @@ public class TraCuuPhieu extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         ckbChuaKetThuc = new javax.swing.JCheckBox();
         ckbDaKetThuc = new javax.swing.JCheckBox();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        cmdLapPM = new javax.swing.JButton();
+        cmdLPTRa = new javax.swing.JButton();
         ckbQuaHanTra = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -141,13 +142,23 @@ public class TraCuuPhieu extends javax.swing.JPanel {
         ckbDaKetThuc.setText("Đã trả đầy đủ");
         jPanel1.add(ckbDaKetThuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Lập phiếu mượn");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 140, -1));
+        cmdLapPM.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmdLapPM.setText("Lập phiếu mượn");
+        cmdLapPM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLapPMActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdLapPM, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 140, -1));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setText("Lập phiếu trả");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 140, -1));
+        cmdLPTRa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmdLPTRa.setText("Lập phiếu trả");
+        cmdLPTRa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLPTRaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdLPTRa, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 140, -1));
 
         ckbQuaHanTra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ckbQuaHanTra.setText("Quá hạntrả");
@@ -294,7 +305,7 @@ public class TraCuuPhieu extends javax.swing.JPanel {
     private void KtraTinhTrang(int a) {
         try {
             DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-            ngayHenTra = df.parse((String) tbPhieu.getValueAt(a, 4));           
+            ngayHenTra = df.parse((String) tbPhieu.getValueAt(a, 4));
             Date date = new Date();
             if (date.after(ngayHenTra)) {
                 ckbQuaHanTra.setSelected(true);
@@ -313,17 +324,44 @@ public class TraCuuPhieu extends javax.swing.JPanel {
         layDaTaCTPhieu();
     }//GEN-LAST:event_tbPhieuMouseClicked
 
+    public static boolean isOpenFrmPhieuMuonSach = false;
+    private MuonSach muonSach;
+    public static boolean isOpenFrmPhieuTraSach = false;
+    private TraSach traSach;
+
+    private void cmdLapPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLapPMActionPerformed
+        if (isOpenFrmPhieuMuonSach == false) {
+            muonSach = new MuonSach();
+            muonSach.setVisible(true);
+            isOpenFrmPhieuMuonSach = true;
+        } else {
+            JOptionPane.showMessageDialog(this, "Mục Mượn Sách đã được mở !");
+            muonSach.setVisible(true);
+        }
+    }//GEN-LAST:event_cmdLapPMActionPerformed
+
+    private void cmdLPTRaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLPTRaActionPerformed
+        if (isOpenFrmPhieuTraSach == false) {
+            traSach = new TraSach();
+            traSach.setVisible(true);
+            isOpenFrmPhieuTraSach = true;
+        } else {
+            JOptionPane.showMessageDialog(this, "Mục Trả Sách đã được mở !");
+            traSach.setVisible(true);
+        }
+    }//GEN-LAST:event_cmdLPTRaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JCheckBox ckbChuaKetThuc;
     private javax.swing.JCheckBox ckbDaKetThuc;
     private javax.swing.JCheckBox ckbQuaHanTra;
+    private javax.swing.JButton cmdLPTRa;
+    private javax.swing.JButton cmdLapPM;
     private javax.swing.JButton cmdTimKiem;
     private com.toedter.calendar.JDateChooser dateDenNgay;
     private com.toedter.calendar.JDateChooser dateTuNgay;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

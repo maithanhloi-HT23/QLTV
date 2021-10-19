@@ -77,7 +77,7 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin sin viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin sin viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -101,7 +101,7 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -116,8 +116,8 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tbSinhVien);
         if (tbSinhVien.getColumnModel().getColumnCount() > 0) {
             tbSinhVien.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tbSinhVien.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tbSinhVien.getColumnModel().getColumn(2).setPreferredWidth(30);
+            tbSinhVien.getColumnModel().getColumn(1).setPreferredWidth(180);
+            tbSinhVien.getColumnModel().getColumn(2).setPreferredWidth(50);
         }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 450, 180));
@@ -161,10 +161,10 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 550, 280));
@@ -234,7 +234,7 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
             }
             conn = ketnoiDB.ConnectDB();
             stmt = conn.createStatement();
-            sql = "select * from SinhVien Where HoTen like '%" + txtTenSV.getText() + "%'";
+            sql = "select * from SinhVien Where HoTen like '%" + txtTenSV.getText() + "%' Order by Lop";
             re = stmt.executeQuery(sql);
             while (re.next()) {
                 listSV.add(new SinhVien(re.getString(1), re.getString(2), re.getString(3), re.getString(4)));
@@ -243,9 +243,9 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
             stmt.close();
             conn.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraCuuSinhVien.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraCuuSinhVien.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     private void tbPhieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPhieuMouseClicked
@@ -287,17 +287,17 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
             stmt.close();
             re.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraCuuSinhVien.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraCuuSinhVien.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private String ktrTrangThai(String a) {
         if (a.equals("1")) {
-            return "Đã trả hết";
+            return "Đã trả xong";
         } else {
-            return "Chưa trả hết";
+            return "Chưa trả xong";
         }
     }
 
@@ -319,9 +319,9 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
             stmt.close();
             re.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraCuuSinhVien.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyTraSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraCuuSinhVien.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

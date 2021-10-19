@@ -9,6 +9,8 @@ import GUI.model.ChuyenMuc;
 import GUI.model.Sach;
 import GUI.model.SinhVien;
 import com.toedter.calendar.JTextFieldDateEditor;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,11 +38,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Loi
  */
-public class QuanLyMuonSach extends javax.swing.JPanel {
+public class MuonSach extends javax.swing.JFrame {
 
-    /**
-     * Creates new form QuanLyMuonSach
-     */
     private JFrame jframe = new JFrame();
     int selectedRowIndex;//Vi tri click chuot tren table
     private String sql;
@@ -64,8 +63,12 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
     private int soPH;
     private String masv;
 
-    public QuanLyMuonSach() {
+    /**
+     * Creates new form MuonSach
+     */
+    public MuonSach() {
         initComponents();
+        setLocationRelativeTo(null);
         cm = dmTL.getCm();
         dsSinhVien();
         searchReadTime();
@@ -78,25 +81,21 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         DateMuon.setEnabled(false);
         txtTenSach.setEnabled(false);
         txtSoPhieu.setEnabled(false);
-    }
 
-    public void dsSinhVien() {
-        try {
-            conn = ketnoiDB.ConnectDB();
-            stmt = conn.createStatement();
-            sql = "select * from SinhVien";
-            re = stmt.executeQuery(sql);
-            while (re.next()) {
-                listSV.add(new SinhVien(re.getString(1), re.getString(2), re.getString(3), re.getString(4)));
+        this.setResizable(false);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                Menu.isOpenFrmPhieuMuonSach = false;
             }
-            re.close();
-            stmt.close();
-            conn.close();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                Menu.isOpenFrmPhieuMuonSach = false;
+            }
+
+        });
     }
 
     /**
@@ -143,7 +142,9 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         txtTenSach = new javax.swing.JTextField();
         txtGhiChu = new javax.swing.JTextField();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mượn Sách");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbThonBao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm sinh viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         tbThonBao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -175,7 +176,7 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         lblThongBao.setText(".");
         tbThonBao.add(lblThongBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 362, -1));
 
-        add(tbThonBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 420, 270));
+        getContentPane().add(tbThonBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 520, 270));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm Sách", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -206,7 +207,7 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tbSach);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 381, 250));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 480, 250));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel4.setText("Thể loại :");
@@ -227,9 +228,9 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
                 cmdAllActionPerformed(evt);
             }
         });
-        jPanel2.add(cmdAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 33, -1, -1));
+        jPanel2.add(cmdAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 420, 370));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 520, 370));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chi tiết phiếu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -337,8 +338,29 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         txtGhiChu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel3.add(txtGhiChu, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 207, 409, 35));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 11, 550, 640));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 550, 640));
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void dsSinhVien() {
+        try {
+            conn = ketnoiDB.ConnectDB();
+            stmt = conn.createStatement();
+            sql = "select * from SinhVien";
+            re = stmt.executeQuery(sql);
+            while (re.next()) {
+                listSV.add(new SinhVien(re.getString(1), re.getString(2), re.getString(3), re.getString(4)));
+            }
+            re.close();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     private void clickTim() {
         masv = txtMaSV.getText().toString().trim();
@@ -386,11 +408,15 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
                 lblThongBao.setText("Sinh viên đang mượn " + demSachMuon() + " cuốn sách.");
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jListMaSVMouseClicked
+
+    private void tbSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSachMouseClicked
+        txtTenSach.setText((String) modelTableSach.getValueAt(tbSach.getSelectedRow(), 0));
+    }//GEN-LAST:event_tbSachMouseClicked
 
     private DefaultComboBoxModel modelCombTim;
 
@@ -418,9 +444,9 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
             stmt.close();
             conn.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -446,16 +472,6 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         }
     }
 
-    private void combTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combTimActionPerformed
-        mamuc = ((ChuyenMuc) combTim.getSelectedItem()).getMaMuc();
-        layDataTbaleSach();
-    }//GEN-LAST:event_combTimActionPerformed
-
-    private void cmdAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAllActionPerformed
-        mamuc = "";
-        layDataTbaleSach();
-    }//GEN-LAST:event_cmdAllActionPerformed
-
     private void capNhatSoLuongSach(int SoLuong, String maSach) {
         sql = "update sach set soluong=" + SoLuong + " where masach=N'" + maSach + "'";
         try {
@@ -464,9 +480,9 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
             ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -485,63 +501,39 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         }
     }
 
-    private void cmdThemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdThemSachActionPerformed
-        masv = txtMaSV.getText().toString().trim();
-        int dem = 0;
-        for (int i = 0; i < listSV.size(); i++) {
-            SinhVien sv = listSV.get(i);
-            if (sv.getMaSV().equals(masv)) {
-                break;
-            } else {
-                dem++;
-            }
+    public String laySoPhieuMoi() throws ClassNotFoundException, SQLException {
+        conn = ketnoiDB.ConnectDB();
+        stmt = conn.createStatement();
+        sql = "Select TOP 1 SoPhieu From Phieu Order By SoPhieu Desc";
+        re = stmt.executeQuery(sql);
+        while (re.next()) {
+            soPH = Integer.parseInt(re.getString(1)) + 1;
         }
-        if (dem == listSV.size()) {
-            JOptionPane.showMessageDialog(this, "Không tìm thấy sinh viên có mã " + masv);
-        }
-        boolean check = true;
-        int solgSach = (int) tbSach.getValueAt(tbSach.getSelectedRow(), 5);
-        String maSach = (String) tbSach.getValueAt(tbSach.getSelectedRow(), 0);
-        if (tbSach.getSelectedRow() == 0) {
-            return;
-        }
-        if (solgSach == 0) {
-            JOptionPane.showMessageDialog(this, "Cuốn sách mã " + maSach + " đã được mượn hết.");
-        } else if (listSachDaThem.isEmpty() && solgSach > 0) {
-            listSachDaThem.add(new Sach(
-                    (String) tbSach.getValueAt(tbSach.getSelectedRow(), 0),
-                    (String) tbSach.getValueAt(tbSach.getSelectedRow(), 1),
-                    (String) tbSach.getValueAt(tbSach.getSelectedRow(), 2),
-                    (String) tbSach.getValueAt(tbSach.getSelectedRow(), 3),
-                    (String) tbSach.getValueAt(tbSach.getSelectedRow(), 4),
-                    1
-            ));
-            capNhatSoLuongSach((solgSach - 1), maSach);
-        } else if (listSachDaThem.size() > 10) {
-            JOptionPane.showMessageDialog(this, "Sinh viên đã mượn quá 10 cuốn sách.");
-        } else {
-            for (int j = 0; j < listSachDaThem.size(); j++) {
-                Sach b = listSachDaThem.get(j);
-                if (b.getMaSach().equals(maSach)) {
-                    JOptionPane.showMessageDialog(this, "Cuốn sách mã " + maSach + " đã được thêm.");
-                    check = false;
-                    break;
-                }
-            }
-            if (check == true) {
-                for (int j = 0; j < listSach.size(); j++) {
-                    if (maSach.equals(listSach.get(j).getMaSach())) {
-                        listSachDaThem.add(listSach.get(j));
-                        mamuc = listSach.get(j).getMaMuc();
-                        capNhatSoLuongSach((listSach.get(j).getSoLuong() - 1), maSach);
-                    }
-                }
-            }
-        }
-        hienThiSachDaThem();
-        layListSach();
+        re.close();
+        stmt.close();
+        conn.close();
+        String str = "00000000" + Integer.toString(soPH);
+        return str;
+    }
+
+    private void xoaTrang() {
+        txtMaSV.setText("");
+        txtHoTen.setText("");
+        txtSoPhieu.setText("");
+        txtGhiChu.setText("");
+        txtTenSach.setText("");
+        txtNguoiLap.setText("");
+    }
+
+    private void combTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combTimActionPerformed
+        mamuc = ((ChuyenMuc) combTim.getSelectedItem()).getMaMuc();
         layDataTbaleSach();
-    }//GEN-LAST:event_cmdThemSachActionPerformed
+    }//GEN-LAST:event_combTimActionPerformed
+
+    private void cmdAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAllActionPerformed
+        mamuc = "";
+        layDataTbaleSach();
+    }//GEN-LAST:event_cmdAllActionPerformed
 
     private void cmdXoaSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdXoaSachActionPerformed
         if (listSachDaThem.isEmpty()) {
@@ -572,15 +564,6 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         layDataTbaleSach();
     }//GEN-LAST:event_cmdXoaSachActionPerformed
 
-    private void xoaTrang() {
-        txtMaSV.setText("");
-        txtHoTen.setText("");
-        txtSoPhieu.setText("");
-        txtGhiChu.setText("");
-        txtTenSach.setText("");
-        txtNguoiLap.setText("");
-    }
-
     private void cmdXoaTrangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdXoaTrangActionPerformed
         for (int i = 0; i < listSachDaThem.size(); i++) {
             String maSach = listSachDaThem.get(i).getMaSach();
@@ -595,43 +578,18 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         mamuc = "";
         hienThiSachDaThem();
         layListSach();
-        layDataTbaleSach();      
+        layDataTbaleSach();
         xoaTrang();
     }//GEN-LAST:event_cmdXoaTrangActionPerformed
-
-    public String laySoPhieuMoi() throws ClassNotFoundException, SQLException {
-        conn = ketnoiDB.ConnectDB();
-        stmt = conn.createStatement();
-        sql = "Select TOP 1 SoPhieu From Phieu Order By SoPhieu Desc";
-        re = stmt.executeQuery(sql);
-        while (re.next()) {
-            soPH = Integer.parseInt(re.getString(1)) + 1;
-        }
-        re.close();
-        stmt.close();
-        conn.close();
-        String str = "00000000" + Integer.toString(soPH);
-        return str;
-    }
-
-    private void cmdSoPhieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSoPhieuActionPerformed
-        try {
-            txtSoPhieu.setText(laySoPhieuMoi());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_cmdSoPhieuActionPerformed
 
     private boolean checkLapPhieu() {
         if (txtSoPhieu.getText().toString().isEmpty()) {
             try {
                 txtSoPhieu.setText(laySoPhieuMoi());
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
             }
             txtSoPhieu.setEditable(false);
             return false;
@@ -701,17 +659,81 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
                     listSachDaThem.clear();
                     modelTableSachMuon.setRowCount(0);
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(QuanLyMuonSach.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }//GEN-LAST:event_cmdTaoPhieuActionPerformed
 
-    private void tbSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSachMouseClicked
-        txtTenSach.setText((String) modelTableSach.getValueAt(tbSach.getSelectedRow(), 0));
-    }//GEN-LAST:event_tbSachMouseClicked
+    private void cmdSoPhieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSoPhieuActionPerformed
+        try {
+            txtSoPhieu.setText(laySoPhieuMoi());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MuonSach.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmdSoPhieuActionPerformed
+
+    private void cmdThemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdThemSachActionPerformed
+        masv = txtMaSV.getText().toString().trim();
+        int dem = 0;
+        for (int i = 0; i < listSV.size(); i++) {
+            SinhVien sv = listSV.get(i);
+            if (sv.getMaSV().equals(masv)) {
+                break;
+            } else {
+                dem++;
+            }
+        }
+        if (dem == listSV.size()) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy sinh viên có mã " + masv);
+        }
+        boolean check = true;
+        int solgSach = (int) tbSach.getValueAt(tbSach.getSelectedRow(), 5);
+        String maSach = (String) tbSach.getValueAt(tbSach.getSelectedRow(), 0);
+        if (tbSach.getSelectedRow() == 0) {
+            return;
+        }
+        if (solgSach == 0) {
+            JOptionPane.showMessageDialog(this, "Cuốn sách mã " + maSach + " đã được mượn hết.");
+        } else if (listSachDaThem.isEmpty() && solgSach > 0) {
+            listSachDaThem.add(new Sach(
+                    (String) tbSach.getValueAt(tbSach.getSelectedRow(), 0),
+                    (String) tbSach.getValueAt(tbSach.getSelectedRow(), 1),
+                    (String) tbSach.getValueAt(tbSach.getSelectedRow(), 2),
+                    (String) tbSach.getValueAt(tbSach.getSelectedRow(), 3),
+                    (String) tbSach.getValueAt(tbSach.getSelectedRow(), 4),
+                    1
+            ));
+            capNhatSoLuongSach((solgSach - 1), maSach);
+        } else if (listSachDaThem.size() > 10) {
+            JOptionPane.showMessageDialog(this, "Sinh viên đã mượn quá 10 cuốn sách.");
+        } else {
+            for (int j = 0; j < listSachDaThem.size(); j++) {
+                Sach b = listSachDaThem.get(j);
+                if (b.getMaSach().equals(maSach)) {
+                    JOptionPane.showMessageDialog(this, "Cuốn sách mã " + maSach + " đã được thêm.");
+                    check = false;
+                    break;
+                }
+            }
+            if (check == true) {
+                for (int j = 0; j < listSach.size(); j++) {
+                    if (maSach.equals(listSach.get(j).getMaSach())) {
+                        listSachDaThem.add(listSach.get(j));
+                        mamuc = listSach.get(j).getMaMuc();
+                        capNhatSoLuongSach((listSach.get(j).getSoLuong() - 1), maSach);
+                    }
+                }
+            }
+        }
+        hienThiSachDaThem();
+        layListSach();
+        layDataTbaleSach();
+    }//GEN-LAST:event_cmdThemSachActionPerformed
 
     private void setJDate() {
         DateMuon.setDate(new Date());
@@ -778,6 +800,40 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
         });
     }
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MuonSach.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MuonSach.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MuonSach.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MuonSach.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MuonSach().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateMuon;
@@ -815,5 +871,4 @@ public class QuanLyMuonSach extends javax.swing.JPanel {
     private javax.swing.JTextField txtSoPhieu;
     private javax.swing.JTextField txtTenSach;
     // End of variables declaration//GEN-END:variables
-
 }

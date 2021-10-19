@@ -71,7 +71,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="cmdPhieuMuon">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Phi&#x1ebf;u M&#x1b0;&#x1ee3;n"/>
+                <Property name="text" type="java.lang.String" value="L&#x1ead;p Phi&#x1ebf;u M&#x1b0;&#x1ee3;n"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdPhieuMuonActionPerformed"/>
@@ -81,7 +81,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="cmdPhieuTra">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Phi&#x1ebf;u Tr&#x1ea3;"/>
+                <Property name="text" type="java.lang.String" value="L&#x1ead;p Phi&#x1ebf;u Tr&#x1ea3;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdPhieuTraActionPerformed"/>
@@ -96,7 +96,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="cmdTimPhieu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="T&#xec;m Phi&#x1ebf;u"/>
+                <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u Th&#xf4;ng tin Phi&#x1ebf;u"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdTimPhieuActionPerformed"/>
@@ -104,7 +104,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="cmdTimSach">
               <Properties>
-                <Property name="text" type="java.lang.String" value="T&#xec;m S&#xe1;ch"/>
+                <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u th&#xf4;ng tin S&#xe1;ch"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdTimSachActionPerformed"/>
@@ -112,7 +112,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="cmdTimSV">
               <Properties>
-                <Property name="text" type="java.lang.String" value="T&#xec;m Sinh vi&#xea;n"/>
+                <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u th&#xf4;ng tin Sinh vi&#xea;n"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdTimSVActionPerformed"/>
@@ -125,6 +125,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="QU&#x1ea2;N L&#xdd; TH&#x1af; VI&#xca;N"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>

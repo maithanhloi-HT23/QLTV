@@ -13,11 +13,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SingleSelectionModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -25,12 +31,19 @@ import javax.swing.SingleSelectionModel;
  */
 public class Menu extends javax.swing.JFrame {
 
+    public static boolean isOpenFrmPhieuMuonSach = false;
+    private MuonSach muonSach;
+    public static boolean isOpenFrmPhieuTraSach = false;
+    private TraSach traSach;
+
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
-        setLocationRelativeTo(null);
+        //setLocationRelativeTo(null);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
     }
 
     /**
@@ -64,6 +77,7 @@ public class Menu extends javax.swing.JFrame {
         cmdTimSV = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("QUẢN LÝ THƯ VIÊN");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(tbpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 760));
 
@@ -120,7 +134,7 @@ public class Menu extends javax.swing.JFrame {
 
         cmdPhieu.setText("Quản Lý Phiếu");
 
-        cmdPhieuMuon.setText("Phiếu Mượn");
+        cmdPhieuMuon.setText("Lập Phiếu Mượn");
         cmdPhieuMuon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdPhieuMuonActionPerformed(evt);
@@ -129,7 +143,7 @@ public class Menu extends javax.swing.JFrame {
         cmdPhieu.add(cmdPhieuMuon);
         cmdPhieu.add(jSeparator4);
 
-        cmdPhieuTra.setText("Phiếu Trả");
+        cmdPhieuTra.setText("Lập Phiếu Trả");
         cmdPhieuTra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdPhieuTraActionPerformed(evt);
@@ -141,7 +155,7 @@ public class Menu extends javax.swing.JFrame {
 
         ad.setText("Tra Cứu");
 
-        cmdTimPhieu.setText("Tìm Phiếu");
+        cmdTimPhieu.setText("Tra cứu Thông tin Phiếu");
         cmdTimPhieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdTimPhieuActionPerformed(evt);
@@ -149,7 +163,7 @@ public class Menu extends javax.swing.JFrame {
         });
         ad.add(cmdTimPhieu);
 
-        cmdTimSach.setText("Tìm Sách");
+        cmdTimSach.setText("Tra cứu thông tin Sách");
         cmdTimSach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdTimSachActionPerformed(evt);
@@ -157,7 +171,7 @@ public class Menu extends javax.swing.JFrame {
         });
         ad.add(cmdTimSach);
 
-        cmdTimSV.setText("Tìm Sinh viên");
+        cmdTimSV.setText("Tra cứu thông tin Sinh viên");
         cmdTimSV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdTimSVActionPerformed(evt);
@@ -210,7 +224,7 @@ public class Menu extends javax.swing.JFrame {
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab(title));
         } else {
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab(title));
-            JOptionPane.showMessageDialog(this, "Mục này đang được mở !");
+            JOptionPane.showMessageDialog(this, "Mục " + title + " đã được mở !");
         }
     }
 
@@ -219,7 +233,15 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdSachActionPerformed
 
     private void cmdPhieuTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPhieuTraActionPerformed
-        addTab("Trả Sách", new QuanLyTraSach());
+        //addTab("Trả Sách", new QuanLyTraSach());
+        if (isOpenFrmPhieuTraSach == false) {
+            traSach = new TraSach();
+            traSach.setVisible(true);
+            isOpenFrmPhieuTraSach = true;
+        } else {
+            JOptionPane.showMessageDialog(this, "Mục Trả Sách đã được mở !");
+            traSach.setVisible(true);
+        }
     }//GEN-LAST:event_cmdPhieuTraActionPerformed
 
     private void cmdTimSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTimSVActionPerformed
@@ -247,7 +269,15 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdSVActionPerformed
 
     private void cmdPhieuMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPhieuMuonActionPerformed
-        addTab("Mượn Sách", new QuanLyMuonSach());
+        //addTab("Mượn Sách", new QuanLyMuonSach());      
+        if (isOpenFrmPhieuMuonSach == false) {
+            muonSach = new MuonSach();
+            muonSach.setVisible(true);
+            isOpenFrmPhieuMuonSach = true;
+        } else {
+            JOptionPane.showMessageDialog(this, "Mục Mượn Sách đã được mở !");
+            muonSach.setVisible(true);
+        }
     }//GEN-LAST:event_cmdPhieuMuonActionPerformed
 
     private void cmdTimSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTimSachActionPerformed

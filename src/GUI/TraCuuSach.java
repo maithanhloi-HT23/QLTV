@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static GUI.Menu.isOpenFrmPhieuTraSach;
 import GUI.model.Sach;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
@@ -35,7 +36,8 @@ public class TraCuuSach extends javax.swing.JPanel {
 
     List<Sach> listSach;
     private KetNoi ketnoiDB = new KetNoi();
-    //private Menu menu = new Menu();
+    private Menu menu = new Menu();
+
     /**
      * Creates new form panelTimSach
      */
@@ -393,12 +395,33 @@ public class TraCuuSach extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tblPhieuMouseClicked
 
+    public static boolean isOpenFrmPhieuMuonSach = false;
+    private MuonSach muonSach;
+    public static boolean isOpenFrmPhieuTraSach = false;
+    private TraSach traSach;
+
     private void cmdPhieuMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPhieuMuonActionPerformed
-        //menu.addTab("Mượn Sách", new QuanLyMuonSach());
+        //menu.addTab("Mượn Sách", new QuanLyMuonSach());       
+        if (isOpenFrmPhieuMuonSach == false) {
+            muonSach = new MuonSach();
+            muonSach.setVisible(true);
+            isOpenFrmPhieuMuonSach = true;
+        } else {
+            JOptionPane.showMessageDialog(this, "Mục Mượn Sách đã được mở !");
+            muonSach.setVisible(true);
+        }
     }//GEN-LAST:event_cmdPhieuMuonActionPerformed
 
     private void cmdPhieuTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPhieuTraActionPerformed
         //menu.addTab("Trả Sách", new QuanLyTraSach());
+        if (isOpenFrmPhieuTraSach == false) {
+            traSach = new TraSach();
+            traSach.setVisible(true);
+            isOpenFrmPhieuTraSach = true;
+        } else {
+            JOptionPane.showMessageDialog(this, "Mục Trả Sách đã được mở !");
+            traSach.setVisible(true);
+        }
     }//GEN-LAST:event_cmdPhieuTraActionPerformed
 
 

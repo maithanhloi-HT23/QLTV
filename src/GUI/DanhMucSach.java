@@ -140,6 +140,9 @@ public class DanhMucSach extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tbDanhMuc);
+        if (tbDanhMuc.getColumnModel().getColumnCount() > 0) {
+            tbDanhMuc.getColumnModel().getColumn(2).setPreferredWidth(200);
+        }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 114, 685, 218));
 
