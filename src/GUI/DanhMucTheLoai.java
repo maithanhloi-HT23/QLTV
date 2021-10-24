@@ -196,8 +196,8 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
         add(cmdXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 273, 85, -1));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
-        jLabel1.setText("Thể Loại");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 14, 208, 43));
+        jLabel1.setText("Chuyên mục");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 290, 43));
 
         cmdGhi.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         cmdGhi.setText("Ghi");

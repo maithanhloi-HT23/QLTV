@@ -337,7 +337,7 @@
                     <Column editable="false" title="S&#x1ed1; phi&#x1ebf;u" type="java.lang.Object"/>
                     <Column editable="false" title="Ng&#xe0;y l&#x1ead;p" type="java.lang.Object"/>
                     <Column editable="false" title="Ng&#x1b0;&#x1edd;i l&#x1ead;p" type="java.lang.Object"/>
-                    <Column editable="false" title="Ma SV" type="java.lang.Object"/>
+                    <Column editable="false" title="M&#xe3; sinh vi&#xea;n" type="java.lang.Object"/>
                     <Column editable="false" title="Ng&#xe0;y h&#x1eb9;n tr&#x1ea3;" type="java.lang.Object"/>
                     <Column editable="false" title="Ng&#xe0;y k&#x1ebf;t th&#xfa;c" type="java.lang.Object"/>
                     <Column editable="false" title="&#x110;&#xe3; k&#x1ebf;t th&#xfa;c" type="java.lang.Object"/>

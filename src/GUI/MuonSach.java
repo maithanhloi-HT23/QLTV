@@ -187,7 +187,7 @@ public class MuonSach extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã sách", "Thể loại", "Tên sách", "Tác giả", "Nhà XB", "Số Lượng"
+                "Mã sách", "Chuyên mục", "Tên sách", "Tác giả", "Nhà XB", "Số Lượng"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -210,7 +210,7 @@ public class MuonSach extends javax.swing.JFrame {
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 480, 250));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel4.setText("Thể loại :");
+        jLabel4.setText("Chuyên mục :");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 36, -1, -1));
 
         combTim.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -219,7 +219,7 @@ public class MuonSach extends javax.swing.JFrame {
                 combTimActionPerformed(evt);
             }
         });
-        jPanel2.add(combTim, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 28, 180, 37));
+        jPanel2.add(combTim, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 180, 37));
 
         cmdAll.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmdAll.setText("Toàn bộ");

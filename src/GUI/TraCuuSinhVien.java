@@ -97,7 +97,7 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
 
             },
             new String [] {
-                "MaSV", "Họ tên", "Lớp", "SDT"
+                "Mã sinh viên", "Họ tên", "Lớp", "SDT"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -177,7 +177,7 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Số phiếu", "Ngày lập", "Người lập", "Ma SV", "Ngay hẹn trả", "Ngày kết thúc", "Trạng thái"
+                "STT", "Số phiếu", "Ngày lập", "Người lập", "Mã sinh viên", "Ngay hẹn trả", "Ngày kết thúc", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {

@@ -201,7 +201,7 @@
                   <Table columnCount="7" rowCount="0">
                     <Column editable="false" title="T&#xea;n s&#xe1;ch" type="java.lang.Object"/>
                     <Column editable="false" title="M&#xe3; s&#xe1;ch" type="java.lang.Object"/>
-                    <Column editable="false" title="Th&#x1ec3; lo&#x1ea1;i" type="java.lang.Object"/>
+                    <Column editable="false" title="Chuy&#xea;n m&#x1ee5;c" type="java.lang.Object"/>
                     <Column editable="false" title="T&#xe1;c Gi&#x1ea3;" type="java.lang.Object"/>
                     <Column editable="false" title="NXB" type="java.lang.Object"/>
                     <Column editable="false" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng trong kho" type="java.lang.Object"/>

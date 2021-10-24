@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -14,8 +15,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,7 +38,7 @@ public class Menu extends javax.swing.JFrame {
     private MuonSach muonSach;
     public static boolean isOpenFrmPhieuTraSach = false;
     private TraSach traSach;
-
+    private ImageIcon icon;
     /**
      * Creates new form Menu
      */
@@ -83,6 +86,8 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu1.setText("Hệ Thống");
 
+        cmdKetThuc.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        cmdKetThuc.setIcon(new javax.swing.ImageIcon("D:\\Tai_Lieu\\Java\\JavaSwing\\QLTV\\Pictures\\power-off.png")); // NOI18N
         cmdKetThuc.setText("Kết Thúc");
         cmdKetThuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +100,8 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu2.setText("Danh Mục");
 
-        cmdTheLoai.setText("Danh Mục Thể Loại");
+        cmdTheLoai.setIcon(new javax.swing.ImageIcon("D:\\Tai_Lieu\\Java\\JavaSwing\\QLTV\\Pictures\\book.png")); // NOI18N
+        cmdTheLoai.setText("Danh Mục Chuyên mục");
         cmdTheLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdTheLoaiActionPerformed(evt);
@@ -104,6 +110,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.add(cmdTheLoai);
         jMenu2.add(jSeparator1);
 
+        cmdSach.setIcon(new javax.swing.ImageIcon("D:\\Tai_Lieu\\Java\\JavaSwing\\QLTV\\Pictures\\bookcase.png")); // NOI18N
         cmdSach.setText("Danh Mục Sách");
         cmdSach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +120,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.add(cmdSach);
         jMenu2.add(jSeparator2);
 
+        cmdLop.setIcon(new javax.swing.ImageIcon("D:\\Tai_Lieu\\Java\\JavaSwing\\QLTV\\Pictures\\classroom.png")); // NOI18N
         cmdLop.setText("Danh Mục Lớp");
         cmdLop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +130,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.add(cmdLop);
         jMenu2.add(jSeparator3);
 
+        cmdSV.setIcon(new javax.swing.ImageIcon("D:\\Tai_Lieu\\Java\\JavaSwing\\QLTV\\Pictures\\reading.png")); // NOI18N
         cmdSV.setText("Danh Mục Sinh Viên");
         cmdSV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +143,7 @@ public class Menu extends javax.swing.JFrame {
 
         cmdPhieu.setText("Quản Lý Phiếu");
 
+        cmdPhieuMuon.setIcon(new javax.swing.ImageIcon("D:\\Tai_Lieu\\Java\\JavaSwing\\QLTV\\Pictures\\read.png")); // NOI18N
         cmdPhieuMuon.setText("Lập Phiếu Mượn");
         cmdPhieuMuon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +153,7 @@ public class Menu extends javax.swing.JFrame {
         cmdPhieu.add(cmdPhieuMuon);
         cmdPhieu.add(jSeparator4);
 
+        cmdPhieuTra.setIcon(new javax.swing.ImageIcon("D:\\Tai_Lieu\\Java\\JavaSwing\\QLTV\\Pictures\\book-signing.png")); // NOI18N
         cmdPhieuTra.setText("Lập Phiếu Trả");
         cmdPhieuTra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +166,7 @@ public class Menu extends javax.swing.JFrame {
 
         ad.setText("Tra Cứu");
 
+        cmdTimPhieu.setIcon(new javax.swing.ImageIcon("D:\\Tai_Lieu\\Java\\JavaSwing\\QLTV\\Pictures\\documents.png")); // NOI18N
         cmdTimPhieu.setText("Tra cứu Thông tin Phiếu");
         cmdTimPhieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +175,7 @@ public class Menu extends javax.swing.JFrame {
         });
         ad.add(cmdTimPhieu);
 
+        cmdTimSach.setIcon(new javax.swing.ImageIcon("D:\\Tai_Lieu\\Java\\JavaSwing\\QLTV\\Pictures\\search.png")); // NOI18N
         cmdTimSach.setText("Tra cứu thông tin Sách");
         cmdTimSach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +184,7 @@ public class Menu extends javax.swing.JFrame {
         });
         ad.add(cmdTimSach);
 
+        cmdTimSV.setIcon(new javax.swing.ImageIcon("D:\\Tai_Lieu\\Java\\JavaSwing\\QLTV\\Pictures\\qualitative-research.png")); // NOI18N
         cmdTimSV.setText("Tra cứu thông tin Sinh viên");
         cmdTimSV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,7 +233,7 @@ public class Menu extends javax.swing.JFrame {
 
     public void addTab(String title, Component component) {
         if (tbpMenu.indexOfTab(title) <= -1) {
-            tbpMenu.add(title, component);
+            tbpMenu.addTab(title, component);
             ButtonClose(title);
             tbpMenu.setSelectedIndex(tbpMenu.indexOfTab(title));
         } else {
@@ -229,7 +243,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     private void cmdSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSachActionPerformed
-        addTab("Sách", new DanhMucSach());
+        addTab("Sách",new DanhMucSach());
     }//GEN-LAST:event_cmdSachActionPerformed
 
     private void cmdPhieuTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPhieuTraActionPerformed

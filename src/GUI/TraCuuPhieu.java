@@ -199,7 +199,7 @@ public class TraCuuPhieu extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Số phiếu", "Ngày lập", "Người lập", "Ma SV", "Ngày hẹn trả", "Ngày kết thúc", "Đã kết thúc"
+                "Số phiếu", "Ngày lập", "Người lập", "Mã sinh viên", "Ngày hẹn trả", "Ngày kết thúc", "Đã kết thúc"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -324,16 +324,14 @@ public class TraCuuPhieu extends javax.swing.JPanel {
         layDaTaCTPhieu();
     }//GEN-LAST:event_tbPhieuMouseClicked
 
-    public static boolean isOpenFrmPhieuMuonSach = false;
     private MuonSach muonSach;
-    public static boolean isOpenFrmPhieuTraSach = false;
     private TraSach traSach;
 
     private void cmdLapPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLapPMActionPerformed
-        if (isOpenFrmPhieuMuonSach == false) {
+        if (Menu.isOpenFrmPhieuMuonSach == false) {
             muonSach = new MuonSach();
             muonSach.setVisible(true);
-            isOpenFrmPhieuMuonSach = true;
+            Menu.isOpenFrmPhieuMuonSach = true;
         } else {
             JOptionPane.showMessageDialog(this, "Mục Mượn Sách đã được mở !");
             muonSach.setVisible(true);
@@ -341,10 +339,10 @@ public class TraCuuPhieu extends javax.swing.JPanel {
     }//GEN-LAST:event_cmdLapPMActionPerformed
 
     private void cmdLPTRaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLPTRaActionPerformed
-        if (isOpenFrmPhieuTraSach == false) {
+        if (Menu.isOpenFrmPhieuTraSach == false) {
             traSach = new TraSach();
             traSach.setVisible(true);
-            isOpenFrmPhieuTraSach = true;
+            Menu.isOpenFrmPhieuTraSach = true;
         } else {
             JOptionPane.showMessageDialog(this, "Mục Trả Sách đã được mở !");
             traSach.setVisible(true);

@@ -255,7 +255,7 @@ public class TraCuuSach extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Tên sách", "Mã sách", "Thể loại", "Tác Giả", "NXB", "Số Lượng trong kho", "Số lượng sách đang mượn"
+                "Tên sách", "Mã sách", "Chuyên mục", "Tác Giả", "NXB", "Số Lượng trong kho", "Số lượng sách đang mượn"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -395,17 +395,15 @@ public class TraCuuSach extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tblPhieuMouseClicked
 
-    public static boolean isOpenFrmPhieuMuonSach = false;
     private MuonSach muonSach;
-    public static boolean isOpenFrmPhieuTraSach = false;
     private TraSach traSach;
 
     private void cmdPhieuMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPhieuMuonActionPerformed
         //menu.addTab("Mượn Sách", new QuanLyMuonSach());       
-        if (isOpenFrmPhieuMuonSach == false) {
+        if (Menu.isOpenFrmPhieuMuonSach == false) {
             muonSach = new MuonSach();
             muonSach.setVisible(true);
-            isOpenFrmPhieuMuonSach = true;
+            Menu.isOpenFrmPhieuMuonSach = true;
         } else {
             JOptionPane.showMessageDialog(this, "Mục Mượn Sách đã được mở !");
             muonSach.setVisible(true);
@@ -414,10 +412,10 @@ public class TraCuuSach extends javax.swing.JPanel {
 
     private void cmdPhieuTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPhieuTraActionPerformed
         //menu.addTab("Trả Sách", new QuanLyTraSach());
-        if (isOpenFrmPhieuTraSach == false) {
+        if (Menu.isOpenFrmPhieuTraSach == false) {
             traSach = new TraSach();
             traSach.setVisible(true);
-            isOpenFrmPhieuTraSach = true;
+            Menu.isOpenFrmPhieuTraSach = true;
         } else {
             JOptionPane.showMessageDialog(this, "Mục Trả Sách đã được mở !");
             traSach.setVisible(true);

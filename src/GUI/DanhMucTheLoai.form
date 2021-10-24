@@ -164,11 +164,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="36" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Th&#x1ec3; Lo&#x1ea1;i"/>
+        <Property name="text" type="java.lang.String" value="Chuy&#xea;n m&#x1ee5;c"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="299" y="14" width="208" height="43"/>
+          <AbsoluteConstraints x="240" y="20" width="290" height="43"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -251,7 +251,7 @@ public class TraSach extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Số phiếu", "Ngày lập", "Người lập", "Ma SV", "Ngay hẹn trả", "Ngày kết thúc", "Đã kết thúc"
+                "Số phiếu", "Ngày lập", "Người lập", "Mã Sinh Viên", "Ngay hẹn trả", "Ngày kết thúc", "Đã kết thúc"
             }
         ) {
             boolean[] canEdit = new boolean [] {
