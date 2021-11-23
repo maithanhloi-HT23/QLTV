@@ -70,6 +70,7 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
         tbPhieu = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 204, 204));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -77,6 +78,7 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin sin viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -169,6 +171,7 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 550, 280));
 
+        jPanel3.setBackground(new java.awt.Color(153, 255, 153));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Phiếu Mượn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -213,7 +216,7 @@ public class TraCuuSinhVien extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 51));
         jLabel1.setText("Tra Cứu Thông Tin Sinh Viên");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, -1, 45));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, -1, 45));
     }// </editor-fold>//GEN-END:initComponents
     public void showCSDL() {
         int i;

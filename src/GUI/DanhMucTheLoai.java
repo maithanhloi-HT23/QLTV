@@ -119,10 +119,12 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
         txtMaMuc = new javax.swing.JTextField();
         txtTenMuc = new javax.swing.JTextField();
         cmdXoa = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         cmdGhi = new javax.swing.JButton();
         cmdKhong = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 153, 153));
         setAutoscrolls(true);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -183,8 +185,8 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel3.setText("Tên mục :");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 182, -1, -1));
-        add(txtMaMuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(536, 118, 156, 35));
-        add(txtTenMuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(536, 179, 156, 36));
+        add(txtMaMuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(536, 118, 200, 35));
+        add(txtTenMuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(536, 179, 200, 36));
 
         cmdXoa.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         cmdXoa.setText("Xóa");
@@ -194,10 +196,6 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
             }
         });
         add(cmdXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 273, 85, -1));
-
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
-        jLabel1.setText("Chuyên mục");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 290, 43));
 
         cmdGhi.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         cmdGhi.setText("Ghi");
@@ -216,6 +214,15 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
             }
         });
         add(cmdKhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 327, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
+        jLabel1.setText("Chuyên mục");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 290, 43));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 690, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     public boolean ktTrungThem(String manhap) throws ClassNotFoundException, SQLException {
@@ -375,6 +382,7 @@ public class DanhMucTheLoai extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbThongBao;
     private javax.swing.JTable tbChuyenMuc;

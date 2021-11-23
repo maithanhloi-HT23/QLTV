@@ -146,6 +146,7 @@ public class MuonSach extends javax.swing.JFrame {
         setTitle("Mượn Sách");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tbThonBao.setBackground(new java.awt.Color(255, 153, 153));
         tbThonBao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm sinh viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         tbThonBao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -178,6 +179,7 @@ public class MuonSach extends javax.swing.JFrame {
 
         getContentPane().add(tbThonBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 520, 270));
 
+        jPanel2.setBackground(new java.awt.Color(255, 153, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm Sách", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -232,6 +234,7 @@ public class MuonSach extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 520, 370));
 
+        jPanel3.setBackground(new java.awt.Color(102, 255, 102));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chi tiết phiếu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

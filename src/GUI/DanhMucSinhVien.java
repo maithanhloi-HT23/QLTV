@@ -70,7 +70,6 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         combTim = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         lbThongBao = new javax.swing.JLabel();
@@ -89,13 +88,12 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
         cmdSua = new javax.swing.JButton();
         cmdKhong = new javax.swing.JButton();
         cmdXoa = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 153, 153));
         setPreferredSize(new java.awt.Dimension(690, 390));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel1.setText("DANH MỤC QUẢN LÝ SINH VIÊN");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 11, -1, -1));
 
         combTim.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         combTim.addActionListener(new java.awt.event.ActionListener() {
@@ -103,15 +101,15 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
                 combTimActionPerformed(evt);
             }
         });
-        add(combTim, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 52, 263, -1));
+        add(combTim, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 263, -1));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel2.setText("Lớp :");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 56, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
 
         lbThongBao.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         lbThongBao.setText(".");
-        add(lbThongBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 56, 181, -1));
+        add(lbThongBao, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 181, -1));
 
         tbSinhVien.setAutoCreateRowSorter(true);
         tbSinhVien.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -140,35 +138,35 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbSinhVien);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 109, 728, 250));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 728, 250));
 
         txtMa.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        add(txtMa, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 378, 189, -1));
+        add(txtMa, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 189, -1));
 
         txtTen.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        add(txtTen, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 428, 189, -1));
+        add(txtTen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, 189, -1));
 
         txtSDT.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        add(txtSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 428, 290, -1));
+        add(txtSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 290, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel4.setText("Mã :");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 381, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel5.setText("Họ tên :");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 431, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel6.setText("Lớp :");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 381, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel7.setText("SĐT :");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 431, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 460, -1, -1));
 
         cobLop.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        add(cobLop, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 377, 288, -1));
+        add(cobLop, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, 288, -1));
 
         cmdThem.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         cmdThem.setText("Thêm");
@@ -177,7 +175,7 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
                 cmdThemActionPerformed(evt);
             }
         });
-        add(cmdThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, 45));
+        add(cmdThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, -1, 45));
 
         cmdGhi.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         cmdGhi.setText("Ghi");
@@ -186,7 +184,7 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
                 cmdGhiActionPerformed(evt);
             }
         });
-        add(cmdGhi, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 470, 70, 45));
+        add(cmdGhi, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, 70, 45));
 
         cmdSua.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         cmdSua.setText("Sửa");
@@ -195,7 +193,7 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
                 cmdSuaActionPerformed(evt);
             }
         });
-        add(cmdSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, 69, 45));
+        add(cmdSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, 69, 45));
 
         cmdKhong.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         cmdKhong.setText("Không");
@@ -204,7 +202,7 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
                 cmdKhongActionPerformed(evt);
             }
         });
-        add(cmdKhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, -1, 47));
+        add(cmdKhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, -1, 47));
 
         cmdXoa.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         cmdXoa.setText("Xóa");
@@ -213,7 +211,16 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
                 cmdXoaActionPerformed(evt);
             }
         });
-        add(cmdXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 71, 43));
+        add(cmdXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, 71, 43));
+
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setText("DANH MỤC QUẢN LÝ SINH VIÊN");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 720, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     public void KhoaMo(boolean b) {
@@ -470,6 +477,7 @@ public class DanhMucSinhVien extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbThongBao;
     private javax.swing.JTable tbSinhVien;

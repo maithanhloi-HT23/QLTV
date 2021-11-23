@@ -59,7 +59,6 @@ public class DanhMucLop extends javax.swing.JPanel {
         cmdXoa = new javax.swing.JButton();
         txtMa = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtTen = new javax.swing.JTextField();
         lbThongBao = new javax.swing.JLabel();
@@ -67,7 +66,10 @@ public class DanhMucLop extends javax.swing.JPanel {
         tbLop = new javax.swing.JTable();
         cmdGhi = new javax.swing.JButton();
         cmdKhong = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 153, 153));
         setAutoscrolls(true);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -102,10 +104,6 @@ public class DanhMucLop extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel2.setText("Mã lớp :");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 98, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel1.setText("QUẢN LÝ LỚP");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 11, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel3.setText("Tên lớp:");
@@ -159,6 +157,15 @@ public class DanhMucLop extends javax.swing.JPanel {
             }
         });
         add(cmdKhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 268, -1, 40));
+
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel1.setText("QUẢN LÝ LỚP");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 720, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     public List<Lop> getLop() {
@@ -375,6 +382,7 @@ public class DanhMucLop extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbThongBao;
     private javax.swing.JTable tbLop;
